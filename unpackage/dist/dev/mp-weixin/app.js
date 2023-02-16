@@ -6,6 +6,8 @@ if (!Math) {
   "./pages/Cart/Cart.js";
   "./pages/My/My.js";
   "./pages/Cate/Cate.js";
+  "./subpkg/Goods-details/Goods-details.js";
+  "./subpkg/Goods-list/Goods-list.js";
 }
 const _sfc_main = {
   onLaunch: function() {
@@ -22,9 +24,26 @@ const _sfc_main = {
 const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/Program Download/miniprogram/uni-shop/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
+  common_vendor.index.$http = common_vendor.$http;
   return {
     app
   };
 }
+common_vendor.index.$showMsg = (title = "\u6570\u636E\u8BF7\u6C42\u5931\u8D25", duration = 1500) => {
+  common_vendor.index.showLoading({
+    title,
+    duration,
+    icon: "none"
+  });
+};
+common_vendor.$http.baseUrl = "https://www.uinav.com";
+common_vendor.$http.beforeRequest = function(option) {
+  common_vendor.index.showLoading({
+    title: "\u52A0\u8F7D\u4E2D..."
+  });
+};
+common_vendor.$http.afterRequest = function(option) {
+  common_vendor.index.hideLoading();
+};
 createApp().app.mount("#app");
 exports.createApp = createApp;

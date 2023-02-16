@@ -5,6 +5,15 @@
     "pages/My/My",
     "pages/Cate/Cate"
   ],
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "pages": [
+        "Goods-details/Goods-details",
+        "Goods-list/Goods-list"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "黑马优购",
