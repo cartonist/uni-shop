@@ -10,19 +10,17 @@ const _sfc_main = {
       const {
         data: res
       } = await common_vendor.index.$http.get("/api/public/v1/home/swiperdata");
-      if (res.meta.status != 200) {
-        return common_vendor.index.$showMsg();
+      if (res.meta.status == 200) {
+        swiperList.value = res.message;
       }
-      swiperList.value = res.message;
     };
     const getNavList = async () => {
       const {
         data: res
       } = await common_vendor.index.$http.get("/api/public/v1/home/catitems");
-      if (res.meta.status != 200) {
-        return common_vendor.index.$showMsg();
+      if (res.meta.status == 200) {
+        navList.value = res.message;
       }
-      navList.value = res.message;
     };
     const navClickHandler = (item) => {
       if (item.name == "\u5206\u7C7B") {
@@ -35,15 +33,14 @@ const _sfc_main = {
       const {
         data: res
       } = await common_vendor.index.$http.get("/api/public/v1/home/floordata");
-      if (res.meta.status != 200) {
-        return common_vendor.index.$showMsg();
-      }
-      res.message.forEach((item) => {
-        item.product_list.forEach((pro) => {
-          pro.url = "/subpkg/Goods-list/Goods-list?" + pro.navigator_url.split("?")[1];
+      if (res.meta.status == 200) {
+        res.message.forEach((item) => {
+          item.product_list.forEach((pro) => {
+            pro.url = "/subpkg/Goods-list/Goods-list?" + pro.navigator_url.split("?")[1];
+          });
         });
-      });
-      floorList.value = res.message;
+        floorList.value = res.message;
+      }
       console.log(floorList.value);
     };
     common_vendor.onBeforeMount(() => {

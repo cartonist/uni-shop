@@ -59,20 +59,20 @@
 		const {
 			data: res
 		} = await uni.$http.get('/api/public/v1/home/swiperdata')
-		if (res.meta.status != 200) {
-			return uni.$showMsg()
+		if (res.meta.status == 200) {
+			swiperList.value = res.message
 		}
-		swiperList.value = res.message
+
 	}
 	// 获取分类导航导航数据
 	const getNavList = async () => {
 		const {
 			data: res
 		} = await uni.$http.get('/api/public/v1/home/catitems')
-		if (res.meta.status != 200) {
-			return uni.$showMsg()
+		if (res.meta.status == 200) {
+			navList.value = res.message
 		}
-		navList.value = res.message
+
 	}
 	// 点击分类导航实现跳转
 	const navClickHandler = (item) => {
@@ -87,16 +87,16 @@
 		const {
 			data: res
 		} = await uni.$http.get('/api/public/v1/home/floordata')
-		if (res.meta.status != 200) {
-			return uni.$showMsg()
-		}
-		// 处理楼层数据中的页面跳转地址
-		res.message.forEach(item => {
-			item.product_list.forEach(pro => {
-				pro.url = '/subpkg/Goods-list/Goods-list?' + pro.navigator_url.split('?')[1]
+		if (res.meta.status == 200) {
+			// 处理楼层数据中的页面跳转地址
+			res.message.forEach(item => {
+				item.product_list.forEach(pro => {
+					pro.url = '/subpkg/Goods-list/Goods-list?' + pro.navigator_url.split('?')[1]
+				})
 			})
-		})
-		floorList.value = res.message
+			floorList.value = res.message
+		}
+
 
 		console.log(floorList.value)
 	}

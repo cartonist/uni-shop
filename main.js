@@ -47,5 +47,8 @@ $http.beforeRequest = function(option) {
 }
 $http.afterRequest = function(option) {
 	uni.hideLoading()
+	if (option.data.meta.status != 200) {
+		uni.$showMsg()
+	}
 }
 // #endif

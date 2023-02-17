@@ -1,0 +1,53 @@
+.cate-scroll {
+  display: flex;
+}
+.cate-scroll .cate-scroll-left {
+  width: 120px;
+}
+.cate-scroll .cate-scroll-left .left-scroll-item {
+  background-color: #F7F7F7;
+  line-height: 60px;
+  text-align: center;
+  font-size: 14px;
+}
+.cate-scroll .cate-scroll-left .active {
+  background-color: #fff;
+  position: relative;
+}
+.cate-scroll .cate-scroll-left .active::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 3px;
+  height: 30px;
+  background-color: red;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-title {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+  padding: 16px 0;
+}
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item {
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+}
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item image {
+  width: 60px;
+  height: 60px;
+}
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item text {
+  padding-top: 10px;
+  font-size: 12px;
+}

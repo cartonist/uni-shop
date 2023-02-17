@@ -44,6 +44,9 @@ common_vendor.$http.beforeRequest = function(option) {
 };
 common_vendor.$http.afterRequest = function(option) {
   common_vendor.index.hideLoading();
+  if (option.data.meta.status != 200) {
+    common_vendor.index.$showMsg();
+  }
 };
 createApp().app.mount("#app");
 exports.createApp = createApp;
