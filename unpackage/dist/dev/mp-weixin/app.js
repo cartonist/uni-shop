@@ -8,6 +8,7 @@ if (!Math) {
   "./pages/Cate/Cate.js";
   "./subpkg/Goods-details/Goods-details.js";
   "./subpkg/Goods-list/Goods-list.js";
+  "./subpkg/Search/Search.js";
 }
 const _sfc_main = {
   onLaunch: function() {

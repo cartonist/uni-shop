@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="search-box">
+			<my-search></my-search>
+		</view>
 		<!-- 轮播图 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item,index) in swiperList" :key="index">
@@ -44,6 +47,7 @@
 </template>
 
 <script setup>
+	import bus from '../../common/bus.js'
 	import {
 		onBeforeMount,
 		ref
@@ -104,10 +108,16 @@
 		getSwiperList()
 		getNavList()
 		getFloorList()
+
+		bus.on('jump', () => {
+			uni.navigateTo({
+				url: '/subpkg/Search/Search'
+			})
+		})
 	})
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 	swiper {
 		height: 330rpx;
 
@@ -149,5 +159,12 @@
 			flex-wrap: wrap;
 		}
 
+	}
+
+	.search-box {
+		// 吸顶效果
+		position: sticky;
+		top: 0;
+		z-index: 999;
 	}
 </style>

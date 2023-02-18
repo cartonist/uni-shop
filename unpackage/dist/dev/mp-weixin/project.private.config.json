@@ -13,6 +13,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "subpkg/Search/Search",
+          "pathName": "subpkg/Search/Search",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

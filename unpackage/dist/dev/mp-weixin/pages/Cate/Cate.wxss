@@ -1,41 +1,41 @@
-.cate-scroll {
+.cate-scroll.data-v-bd643b52 {
   display: flex;
 }
-.cate-scroll .cate-scroll-left {
+.cate-scroll .cate-scroll-left.data-v-bd643b52 {
   width: 120px;
 }
-.cate-scroll .cate-scroll-left .left-scroll-item {
+.cate-scroll .cate-scroll-left .left-scroll-item.data-v-bd643b52 {
   background-color: #F7F7F7;
   line-height: 60px;
   text-align: center;
   font-size: 14px;
 }
-.cate-scroll .cate-scroll-left .active {
+.cate-scroll .cate-scroll-left .active.data-v-bd643b52 {
   background-color: #fff;
   position: relative;
 }
-.cate-scroll .cate-scroll-left .active::before {
+.cate-scroll .cate-scroll-left .active.data-v-bd643b52::before {
   content: '';
   display: block;
   position: absolute;
   width: 3px;
   height: 30px;
-  background-color: red;
+  background-color: #d81e06;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
 }
-.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-title {
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-title.data-v-bd643b52 {
   font-size: 14px;
   text-align: center;
   font-weight: 700;
   padding: 16px 0;
 }
-.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content {
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content.data-v-bd643b52 {
   display: flex;
   flex-wrap: wrap;
 }
-.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item {
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item.data-v-bd643b52 {
   width: 33.33%;
   display: flex;
   flex-direction: column;
@@ -43,11 +43,11 @@
   align-items: center;
   padding-bottom: 15px;
 }
-.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item image {
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item image.data-v-bd643b52 {
   width: 60px;
   height: 60px;
 }
-.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item text {
+.cate-scroll .cate-scroll-right .right-scroll-item .right-scroll-content .right-scroll-content-item text.data-v-bd643b52 {
   padding-top: 10px;
   font-size: 12px;
 }

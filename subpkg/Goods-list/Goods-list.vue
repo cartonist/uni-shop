@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+
 	</view>
 </template>
 
@@ -8,12 +8,12 @@
 	export default {
 		data() {
 			return {
-				
+
 			};
 		}
 	}
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 
 </style>

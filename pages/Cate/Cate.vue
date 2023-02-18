@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<!-- 组件中封装了自定义属性，可以实现组件自定制（通过props传值） -->
+		<my-search></my-search>
 		<!-- 滑动组件 -->
 		<view class="cate-scroll">
 			<!-- 左侧滑动区 -->
@@ -30,6 +32,7 @@
 </template>
 
 <script setup>
+	import bus from '../../common/bus.js'
 	import {
 		onBeforeMount,
 		ref
@@ -72,12 +75,18 @@
 	}
 	onBeforeMount(() => {
 		const sync = uni.getSystemInfoSync()
-		wh.value = sync.windowHeight
+		wh.value = sync.windowHeight - 50
+		// 这里减去的50是搜索区的高度
 		getCateList()
+		bus.on('jump', () => {
+			uni.navigateTo({
+				url: '/subpkg/Search/Search'
+			})
+		})
 	})
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 	.cate-scroll {
 		display: flex;
 
@@ -101,7 +110,7 @@
 					position: absolute;
 					width: 3px;
 					height: 30px;
-					background-color: red;
+					background-color: #d81e06;
 					top: 50%;
 					left: 0;
 					transform: translateY(-50%);

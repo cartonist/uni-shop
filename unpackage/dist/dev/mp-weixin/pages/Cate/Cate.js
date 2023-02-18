@@ -1,5 +1,14 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const common_bus = require("../../common/bus.js");
+if (!Array) {
+  const _easycom_my_search2 = common_vendor.resolveComponent("my-search");
+  _easycom_my_search2();
+}
+const _easycom_my_search = () => "../../components/my-search/my-search.js";
+if (!Math) {
+  _easycom_my_search();
+}
 const _sfc_main = {
   __name: "Cate",
   setup(__props) {
@@ -29,8 +38,13 @@ const _sfc_main = {
     };
     common_vendor.onBeforeMount(() => {
       const sync = common_vendor.index.getSystemInfoSync();
-      wh.value = sync.windowHeight;
+      wh.value = sync.windowHeight - 50;
       getCateList();
+      common_bus.bus.on("jump", () => {
+        common_vendor.index.navigateTo({
+          url: "/subpkg/Search/Search"
+        });
+      });
     });
     return (_ctx, _cache) => {
       return {
@@ -63,5 +77,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/Program Download/miniprogram/uni-shop/pages/Cate/Cate.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-bd643b52"], ["__file", "D:/Program Download/miniprogram/uni-shop/pages/Cate/Cate.vue"]]);
 wx.createPage(MiniProgramPage);

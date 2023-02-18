@@ -45,6 +45,15 @@
                 }
                 
                 }
+                ,{
+                    "path" : "Search/Search",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
             ]
 	}],
 	"globalStyle": {
