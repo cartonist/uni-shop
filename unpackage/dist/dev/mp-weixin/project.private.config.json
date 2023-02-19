@@ -27,6 +27,13 @@
           "query": "query=户外",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/Goods-details/Goods-details",
+          "query": "goods_id=900",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
