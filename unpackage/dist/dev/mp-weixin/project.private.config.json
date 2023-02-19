@@ -20,6 +20,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/Goods-list/Goods-list",
+          "query": "query=户外",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
