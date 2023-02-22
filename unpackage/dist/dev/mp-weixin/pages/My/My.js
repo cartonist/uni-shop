@@ -1,9 +1,11 @@
 "use strict";
+const mixins_tabbarBadge = require("../../mixins/tabbar-badge.js");
 const common_vendor = require("../../common/vendor.js");
+require("../../store/store.js");
+require("../../store/cart.js");
+require("../../store/user.js");
 const _sfc_main = {
-  data() {
-    return {};
-  }
+  mixins: [mixins_tabbarBadge.badgeMix]
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {};

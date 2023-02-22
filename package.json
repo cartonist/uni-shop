@@ -19,6 +19,7 @@
   "homepage": "https://github.com/cartonist/uni-shop#readme",
   "dependencies": {
     "@escook/request-miniprogram": "^0.2.1",
-    "mitt": "^3.0.0"
+    "mitt": "^3.0.0",
+    "vuex": "^4.1.0"
   }
 }

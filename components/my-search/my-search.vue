@@ -26,7 +26,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 	.my-search-container {
 		height: 50px;
 		// background-color: #d81e06;

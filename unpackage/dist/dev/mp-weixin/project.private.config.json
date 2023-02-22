@@ -34,6 +34,20 @@
           "query": "goods_id=900",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/My/My",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/Cart/Cart",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -1,6 +1,10 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const common_bus = require("../../common/bus.js");
+const mixins_tabbarBadge = require("../../mixins/tabbar-badge.js");
+require("../../store/store.js");
+require("../../store/cart.js");
+require("../../store/user.js");
 if (!Array) {
   const _easycom_my_search2 = common_vendor.resolveComponent("my-search");
   _easycom_my_search2();
@@ -9,7 +13,10 @@ const _easycom_my_search = () => "../../components/my-search/my-search.js";
 if (!Math) {
   _easycom_my_search();
 }
-const _sfc_main = {
+const __default__ = {
+  mixins: [mixins_tabbarBadge.badgeMix]
+};
+const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
   __name: "Home",
   setup(__props) {
     const navList = common_vendor.ref([]);
@@ -98,6 +105,6 @@ const _sfc_main = {
       };
     };
   }
-};
+});
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-7ffebbf4"], ["__file", "D:/Program Download/miniprogram/uni-shop/pages/Home/Home.vue"]]);
 wx.createPage(MiniProgramPage);

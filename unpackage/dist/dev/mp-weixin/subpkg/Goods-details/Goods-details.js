@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+require("../../store/cart.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_goods_nav2 = common_vendor.resolveComponent("uni-goods-nav");
@@ -13,6 +14,7 @@ if (!Math) {
 const _sfc_main = {
   __name: "Goods-details",
   setup(__props) {
+    const store = common_vendor.useStore();
     const goodsInfo = common_vendor.ref({});
     const options = common_vendor.ref([{
       icon: "shop",
@@ -22,7 +24,7 @@ const _sfc_main = {
     }, {
       icon: "cart",
       text: "\u8D2D\u7269\u8F66",
-      info: 2
+      info: 0
     }]);
     const buttonGroup = common_vendor.ref([
       {
@@ -36,6 +38,15 @@ const _sfc_main = {
         color: "#fff"
       }
     ]);
+    const total = common_vendor.computed$1(() => store.getters["cart/total"]);
+    common_vendor.watch(total, (val) => {
+      const cartOption = options.value.find((item) => item.text == "\u8D2D\u7269\u8F66");
+      if (cartOption) {
+        cartOption.info = val;
+      }
+    }, {
+      immediate: true
+    });
     common_vendor.onLoad((option) => {
       const goodsId = option.goods_id;
       getGoodsInfo(goodsId);
@@ -60,11 +71,24 @@ const _sfc_main = {
         urls: goodsInfo.value.pics.map((x) => x.pics_big)
       });
     };
-    const goTOCart = (e) => {
+    const onClick = (e) => {
       if (e.content.text == "\u8D2D\u7269\u8F66") {
         common_vendor.index.switchTab({
           url: "/pages/Cart/Cart"
         });
+      }
+    };
+    const buttonClick = (e) => {
+      const goods = {
+        goods_id: goodsInfo.value.goods_id,
+        goods_name: goodsInfo.value.goods_name,
+        goods_price: goodsInfo.value.goods_price,
+        goods_count: 1,
+        goods_small_logo: goodsInfo.value.goods_small_logo,
+        goods_state: true
+      };
+      if (e.content.text == "\u52A0\u5165\u8D2D\u7269\u8F66") {
+        store.commit("cart/addToCart", goods);
       }
     };
     return (_ctx, _cache) => {
@@ -86,8 +110,8 @@ const _sfc_main = {
           color: "gray"
         }),
         f: goodsInfo.value.goods_introduce,
-        g: common_vendor.o(goTOCart),
-        h: common_vendor.o(_ctx.buttonClick),
+        g: common_vendor.o(onClick),
+        h: common_vendor.o(buttonClick),
         i: common_vendor.p({
           fill: true,
           options: options.value,

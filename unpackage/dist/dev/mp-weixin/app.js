@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
 const common_vendor = require("./common/vendor.js");
+const store_store = require("./store/store.js");
+require("./store/cart.js");
+require("./store/user.js");
 if (!Math) {
   "./pages/Home/Home.js";
   "./pages/Cart/Cart.js";
@@ -25,6 +28,7 @@ const _sfc_main = {
 const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/Program Download/miniprogram/uni-shop/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
+  app.use(store_store.myStore);
   common_vendor.index.$http = common_vendor.$http;
   return {
     app

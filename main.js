@@ -22,8 +22,10 @@ import {
 	createSSRApp
 } from 'vue'
 import App from './App.vue'
+import store from './store/store.js'
 export function createApp() {
 	const app = createSSRApp(App)
+	app.use(store)
 	// 挂载到uni顶级对象上
 	uni.$http = $http
 	return {

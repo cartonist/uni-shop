@@ -27,7 +27,7 @@
 		<rich-text :nodes="goodsInfo.goods_introduce"></rich-text>
 		<!-- 使用uniapp的组件实现底部nav-bar -->
 		<view class="nav-bar">
-			<uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="goTOCart"
+			<uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="onClick"
 				@buttonClick="buttonClick" />
 		</view>
 	</view>
@@ -35,11 +35,18 @@
 
 <script setup>
 	import {
-		ref
+		computed,
+		ref,
+		watch
 	} from "vue";
 	import {
 		onLoad
 	} from "@dcloudio/uni-app"
+	import {
+		useStore
+	} from "vuex";
+	import cart from "../../store/cart";
+	const store = useStore()
 	// 商品详情数据
 	const goodsInfo = ref({})
 	const options = ref([{
@@ -50,7 +57,7 @@
 	}, {
 		icon: 'cart',
 		text: '购物车',
-		info: 2
+		info: 0
 	}])
 	const buttonGroup = ref([{
 			text: '加入购物车',
@@ -63,6 +70,18 @@
 			color: '#fff'
 		}
 	])
+	// 获取购物车的总数
+	const total = computed(() => store.getters['cart/total'])
+	// 监听total的变化
+	watch(total, (val) => {
+		const cartOption = options.value.find(item => item.text == '购物车')
+		if (cartOption) {
+			// 将total的新值赋给cartOption.info
+			cartOption.info = val
+		}
+	}, { //立即执行
+		immediate: true
+	})
 	onLoad((option) => {
 		const goodsId = option.goods_id
 		getGoodsInfo(goodsId)
@@ -91,12 +110,27 @@
 			urls: goodsInfo.value.pics.map(x => x.pics_big)
 		})
 	}
-	// 跳转到购物车页面
-	const goTOCart = (e) => {
+	// 底部navBar的左侧两个图标的点击事件处理函数
+	const onClick = (e) => {
 		if (e.content.text == '购物车') {
 			uni.switchTab({
 				url: '/pages/Cart/Cart'
 			})
+		}
+	}
+	// 底部navBar的右侧两个图标的点击事件处理函数
+	const buttonClick = (e) => {
+		// 传入购物车的商品
+		const goods = {
+			goods_id: goodsInfo.value.goods_id,
+			goods_name: goodsInfo.value.goods_name,
+			goods_price: goodsInfo.value.goods_price,
+			goods_count: 1,
+			goods_small_logo: goodsInfo.value.goods_small_logo,
+			goods_state: true
+		}
+		if (e.content.text == '加入购物车') {
+			store.commit('cart/addToCart', goods)
 		}
 	}
 </script>
