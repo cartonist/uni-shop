@@ -9,7 +9,7 @@
 			合计<text class="total-price">￥{{checkedAmount}}</text>
 		</view>
 		<!-- 结算按钮 -->
-		<view class="btn-settle">
+		<view class="btn-settle" @click="settlement">
 			结算({{checkedCount}})
 		</view>
 	</view>
@@ -20,7 +20,8 @@
 		useStore
 	} from 'vuex';
 	import {
-		computed
+		computed,
+		ref
 	} from "vue";
 	const store = useStore()
 	// 选中的数量
@@ -32,6 +33,53 @@
 	// 改变全选状态
 	const changAllState = () => {
 		store.commit('cart/updateAllGoodsState', !isCheckAll.value)
+	}
+	// token
+	const token = computed(() => store.state.user.token)
+	// 收货地址
+	const address = computed(() => store.state.user.address)
+	// 登录倒计时
+	const seconds = ref(0)
+	// 点击结算
+	const settlement = () => {
+		if (!checkedCount.value) return uni.$showMsg('请先选择商品')
+		if (JSON.stringify(address.value) == '{}') return uni.$showMsg('请先选择地址')
+		if (!token.value) return delayNavigate()
+	}
+	// 显示倒计时的提示信息
+	const showTip = (seconds) => {
+		uni.showToast({
+			icon: 'none',
+			title: `请登录后在结算！${seconds}后跳转到登录页面`,
+			mask: true,
+			duartion: 1500
+		})
+	}
+	// 延迟导航到my页面
+	const delayNavigate = () => {
+		seconds.value = 5
+		showTip(seconds.value)
+		let timer = setInterval(() => {
+			seconds.value--;
+			if (seconds.value <= 0) {
+				clearInterval(timer)
+				// 跳转至my页面
+				uni.switchTab({
+					url: '/pages/My/My',
+					// 跳转成功后，记录本页面信息，以便重定向
+					success: () => {
+						store.commit('user/updateRedirectInfo', {
+							// 跳转的方式
+							openType: 'switchTab',
+							// 从哪个页面跳转过去
+							from: '/pages/Cart/Cart',
+						})
+					}
+				})
+				return
+			}
+			showTip(seconds.value)
+		}, 1000)
 	}
 </script>
 

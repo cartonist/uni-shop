@@ -34,7 +34,7 @@ export function createApp() {
 }
 // 封装弹窗方法
 uni.$showMsg = (title = '数据请求失败', duration = 1500) => {
-	uni.showLoading({
+	uni.showToast({
 		title,
 		duration,
 		icon: 'none'
@@ -46,6 +46,13 @@ $http.beforeRequest = function(option) {
 	uni.showLoading({
 		title: '加载中...'
 	})
+	// 判断请求是否是有权限的API接口
+	if (option.url.indexOf('/my/') != -1) {
+		// 为请求头添加身份认证字段
+		options.header = {
+			Authorization: store.state.user.token
+		}
+	}
 }
 $http.afterRequest = function(option) {
 	uni.hideLoading()

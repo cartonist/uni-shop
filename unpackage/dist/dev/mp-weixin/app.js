@@ -35,7 +35,7 @@ function createApp() {
   };
 }
 common_vendor.index.$showMsg = (title = "\u6570\u636E\u8BF7\u6C42\u5931\u8D25", duration = 1500) => {
-  common_vendor.index.showLoading({
+  common_vendor.index.showToast({
     title,
     duration,
     icon: "none"
@@ -46,6 +46,11 @@ common_vendor.$http.beforeRequest = function(option) {
   common_vendor.index.showLoading({
     title: "\u52A0\u8F7D\u4E2D..."
   });
+  if (option.url.indexOf("/my/") != -1) {
+    options.header = {
+      Authorization: store_store.myStore.state.user.token
+    };
+  }
 };
 common_vendor.$http.afterRequest = function(option) {
   common_vendor.index.hideLoading();

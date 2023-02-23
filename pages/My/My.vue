@@ -1,10 +1,19 @@
 <template>
-	<view>
-		My
+	<view class="my-container">
+		<my-login v-if="!token"></my-login>
+		<my-userinfo v-else></my-userinfo>
 	</view>
 </template>
 
 <script setup>
+	import {
+		useStore
+	} from 'vuex';
+	import {
+		computed
+	} from "vue";
+	const store = useStore()
+	const token = computed(() => store.state.user.token)
 </script>
 <!-- 混入tabBar徽标的设置代码-->
 <script>
@@ -16,5 +25,7 @@
 </script>
 
 <style lang="less" scoped>
-
+	.my-container {
+		height: 100vh;
+	}
 </style>

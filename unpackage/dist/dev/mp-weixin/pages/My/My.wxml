@@ -1,1 +1,1 @@
-<view> My </view>
+<view class="my-container data-v-8f9a99c0"><my-login wx:if="{{a}}" class="data-v-8f9a99c0" u-i="8f9a99c0-0" bind:__l="__l"></my-login><my-userinfo wx:else class="data-v-8f9a99c0" u-i="8f9a99c0-1" bind:__l="__l"></my-userinfo></view>
